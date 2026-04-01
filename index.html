@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rylee & Angela - Graduation 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Properly configure our custom MVC colors so Tailwind CSS can use them for text, backgrounds, and opacities!
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mvc-teal': '#008489',
+                        'mvc-gold': '#FFC72C',
+                        'mvc-dark': '#0a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* MVC Official Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: white;
+            color: #0a1a1a;
+            line-height: 1.6;
+        }
+
+        .serif {
+            font-family: 'EB Garamond', serif;
+        }
+
+        /* Hero with Parallax Feel */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(0, 132, 137, 0.85) 0%, rgba(0, 60, 62, 0.8) 100%), 
+                        url('https://images.unsplash.com/photo-1523050853063-915894b9de9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 199, 44, 0.5);
+        }
+
+        /* Card Styling */
+        .card-perspective {
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid rgba(0, 132, 137, 0.08);
+        }
+        .card-perspective:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px -12px rgba(0, 132, 137, 0.25);
+            border-color: #008489;
+        }
+
+        /* Spacing Utilities */
+        .section-spacing {
+            padding-top: 10rem;
+            padding-bottom: 10rem;
+        }
+
+        .btn-hover {
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 30px -10px rgba(0, 132, 137, 0.3);
+        }
+        .btn-hover:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 40px -12px rgba(0, 132, 137, 0.5);
+        }
+
+        .float-nyc {
+            animation: bounce-slow 5s ease-in-out infinite;
+        }
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(3deg); }
+        }
+
+        /* NEW NYC BACKGROUND & GLASS EFFECT */
+        .nyc-section {
+            background: linear-gradient(180deg, rgba(0, 132, 137, 0.3) 0%, rgba(0, 96, 99, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HERO SECTION -->
+    <header class="hero-section min-h-screen flex items-center justify-center text-center text-white px-6 relative">
+        <div class="max-w-5xl relative z-10 py-20">
+            <div class="mb-10 inline-block border-2 border-mvc-gold px-10 py-3 rounded-full text-[12px] font-black tracking-[0.5em] uppercase text-mvc-gold bg-black/10 backdrop-blur-sm">
+                Mother & Son Milestone
+            </div>
+            <h1 class="serif text-7xl md:text-9xl mb-8 italic leading-tight text-glow">Rylee & Angela</h1>
+            <p class="text-2xl md:text-4xl font-light mb-12 opacity-90 tracking-[0.2em] uppercase">Class of 2026</p>
+            
+            <div class="h-2 w-40 bg-mvc-gold mx-auto mb-12 rounded-full"></div>
+            
+            <p class="text-xl md:text-3xl max-w-4xl mx-auto leading-relaxed font-light mb-16 opacity-95">
+                Two Graduations. Two Degrees. One Journey.<br>
+                Celebrating our simultaneous achievement of our <span class="font-bold text-mvc-gold">Associate’s Degrees</span> from Moreno Valley College.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-8 justify-center">
+                <a href="#ceremony" class="bg-white text-mvc-teal px-14 py-6 rounded-2xl font-black uppercase tracking-widest text-xs btn-hover">The Ceremonies</a>
+                <a href="#nyc-trip" class="bg-mvc-gold text-mvc-dark px-14 py-6 rounded-2xl font-black uppercase tracking-widest text-xs btn-hover">NYC Trip Fund</a>
+            </div>
+        </div>
+        
+        <!-- Bottom Fade -->
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent"></div>
+    </header>
+
+    <main>
+        <!-- COMMENCEMENT SECTION -->
+        <section id="ceremony" class="section-spacing px-6 bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-24">
+                    <p class="text-mvc-teal font-black uppercase tracking-[0.4em] text-xs mb-6">Double Celebration</p>
+                    <h2 class="serif text-6xl md:text-7xl text-mvc-teal italic mb-4">Commencement Ceremonies</h2>
+                    <div class="w-24 h-1.5 bg-mvc-gold mx-auto rounded-full mt-8"></div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-16">
+                    <!-- VALLEY VIEW CARD -->
+                    <div class="bg-slate-50 p-16 rounded-[4rem] card-perspective relative overflow-hidden group">
+                        <div class="absolute -top-10 -right-10 p-10 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:rotate-12">
+                            <span class="text-[15rem]">🎓</span>
+                        </div>
+                        
+                        <div class="relative z-10">
+                            <h3 class="serif text-5xl text-mvc-teal italic mb-4">Valley View High School</h3>
+                            <p class="font-black text-slate-800 uppercase tracking-[0.2em] text-sm mb-12 border-b border-slate-200 pb-4 inline-block">Rylee's Graduation</p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-center p-8 bg-white rounded-[2.5rem] shadow-sm border border-slate-100">
+                                    <div class="w-16 h-16 bg-mvc-teal/10 rounded-3xl flex items-center justify-center mr-6">
+                                        <span class="text-2xl">📅</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-black text-lg text-mvc-teal">June 11th, 2026</p>
+                                        <p class="text-sm text-slate-400 font-medium uppercase tracking-widest">6:00 PM</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-8 bg-white rounded-[2.5rem] shadow-sm border border-slate-100">
+                                    <div class="w-16 h-16 bg-mvc-teal/10 rounded-3xl flex items-center justify-center mr-6">
+                                        <span class="text-2xl">📍</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-black text-lg text-mvc-teal">Valley View Stadium</p>
+                                        <p class="text-sm text-slate-400 font-medium uppercase tracking-widest">Moreno Valley, CA</p>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://go.rpeak.org/VVHS_grad" target="_blank" class="flex items-center justify-center w-full p-6 bg-white rounded-[2.5rem] shadow-sm border border-slate-100 hover:border-mvc-teal transition-all group">
+                                    <svg class="w-8 h-8 mr-4 text-red-600 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M21.582 6.186a2.665 2.665 0 0 0-1.884-1.884C18.04 3.84 12 3.84 12 3.84s-6.04 0-7.698.462a2.665 2.665 0 0 0-1.884 1.884C1.956 7.844 1.956 12 1.956 12s0 4.156.462 5.814a2.665 2.665 0 0 0 1.884 1.884C6.04 20.16 12 20.16 12 20.16s6.04 0 7.698-.462a2.665 2.665 0 0 0 1.884-1.884C22.044 16.156 22.044 12 22.044 12s0-4.156-.462-5.814zM9.96 15.528V8.472L16.08 12l-6.12 3.528z"/></svg>
+                                    <div>
+                                        <p class="font-black text-mvc-teal uppercase tracking-widest text-xs">Watch Live on YouTube</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MVC CARD -->
+                    <div class="bg-mvc-teal/5 p-16 rounded-[4rem] card-perspective relative overflow-hidden group border-2 border-mvc-teal/10">
+                        <div class="absolute -top-10 -right-10 p-10 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:rotate-12">
+                            <span class="text-[15rem] text-mvc-teal">🦁</span>
+                        </div>
+                        
+                        <div class="relative z-10">
+                            <h3 class="serif text-5xl text-mvc-teal italic mb-4">Moreno Valley College</h3>
+                            <p class="font-black text-slate-800 uppercase tracking-[0.2em] text-sm mb-12 border-b border-mvc-teal/20 pb-4 inline-block">Rylee & Angela</p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-center p-8 bg-white rounded-[2.5rem] shadow-sm border border-mvc-teal/10">
+                                    <div class="w-16 h-16 bg-mvc-gold rounded-3xl flex items-center justify-center mr-6 shadow-md">
+                                        <span class="text-2xl">🎓</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-black text-lg text-mvc-teal">June 12th, 2026</p>
+                                        <p class="text-sm text-slate-400 font-medium uppercase tracking-widest">6:00 PM</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center p-8 bg-white rounded-[2.5rem] shadow-sm border border-mvc-teal/10">
+                                    <div class="w-16 h-16 bg-mvc-gold rounded-3xl flex items-center justify-center mr-6 shadow-md">
+                                        <span class="text-2xl">📍</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-black text-lg text-mvc-teal">College Park</p>
+                                        <p class="text-sm text-slate-400 font-medium uppercase tracking-widest">Soccer Fields at MVC</p>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://go.rpeak.org/MVC_grad" target="_blank" class="flex items-center justify-center w-full p-6 bg-white rounded-[2.5rem] shadow-sm border border-mvc-teal/10 hover:border-mvc-teal transition-all group">
+                                    <svg class="w-8 h-8 mr-4 text-red-600 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M21.582 6.186a2.665 2.665 0 0 0-1.884-1.884C18.04 3.84 12 3.84 12 3.84s-6.04 0-7.698.462a2.665 2.665 0 0 0-1.884 1.884C1.956 7.844 1.956 12 1.956 12s0 4.156.462 5.814a2.665 2.665 0 0 0 1.884 1.884C6.04 20.16 12 20.16 12 20.16s6.04 0 7.698-.462a2.665 2.665 0 0 0 1.884-1.884C22.044 16.156 22.044 12 22.044 12s0-4.156-.462-5.814zM9.96 15.528V8.472L16.08 12l-6.12 3.528z"/></svg>
+                                    <div>
+                                        <p class="font-black text-mvc-teal uppercase tracking-widest text-xs">Watch Live on YouTube</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WISH LIST SECTION (High-Impact Teal) -->
+        <section class="section-spacing bg-mvc-teal text-white overflow-hidden relative shadow-inner">
+            <div class="max-w-5xl mx-auto px-6 text-center relative z-10 py-10">
+                <p class="uppercase tracking-[0.5em] text-xs font-black text-white/60 mb-8">Celebration Gifts</p>
+                <h2 class="serif text-6xl md:text-7xl italic mb-10">Our Wish List</h2>
+                <p class="text-2xl md:text-3xl opacity-90 mb-16 font-light max-w-2xl mx-auto leading-relaxed">
+                    We've curated a small registry at Target for essentials as we start our next academic chapters.
+                </p>
+                
+                <a href="https://www.target.com/gift-registry" target="_blank" class="bg-white text-mvc-teal px-16 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-sm shadow-2xl btn-hover inline-flex items-center group">
+                    <svg class="w-8 h-8 mr-5 text-red-600 group-hover:scale-125 transition-transform" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-12.5c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5 4.5-2.02 4.5-4.5-2.02-4.5-4.5-4.5z"/></svg>
+                    Target Registry
+                </a>
+            </div>
+            <!-- Background detail -->
+            <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(white 1.5px, transparent 0); background-size: 60px 60px;"></div>
+        </section>
+
+        <!-- NYC TRIP SECTION (The Full Standout) -->
+        <section id="nyc-trip" class="section-spacing nyc-section text-white relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-6 relative z-10 text-center py-10">
+                <div class="mb-16">
+                    <div class="inline-block mb-10 relative">
+                        <span class="text-[10rem] md:text-[14rem] block float-nyc opacity-95 drop-shadow-2xl">🗽</span>
+                        <!-- Subtle glow behind statue -->
+                        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-[120%] h-10 bg-mvc-teal/40 blur-2xl rounded-full -z-10"></div>
+                    </div>
+                    
+                    <p class="uppercase tracking-[0.5em] text-mvc-gold font-black text-sm mb-6 drop-shadow-md">Our Next Adventure</p>
+                    <h2 class="serif text-7xl md:text-9xl italic text-white mb-12 tracking-tight text-glow">The Big Apple</h2>
+                    
+                    <!-- Sleek Glassmorphism Container -->
+                    <div class="glass-panel p-10 md:p-16 rounded-[3rem] max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
+                        <!-- Top gold accent line inside glass -->
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-mvc-gold to-transparent opacity-60"></div>
+                        
+                        <p class="text-2xl md:text-4xl opacity-90 mb-16 leading-relaxed font-light text-shadow">
+                            To celebrate our shared hard work, we are planning a dream trip to <span class="text-mvc-gold font-bold">New York City</span>! 
+                            Your support in helping us reach our goal is the ultimate graduation gift.
+                        </p>
+                        
+                        <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                            <!-- Venmo -->
+                            <button onclick="copyToClipboard('@Rylee-Angela-2026', 'Venmo')" class="flex items-center bg-white/10 border border-white/30 hover:bg-white/20 hover:border-mvc-gold p-8 rounded-[2.5rem] transition-all duration-300 group shadow-2xl backdrop-blur-md">
+                                <div class="w-20 h-20 bg-gradient-to-br from-[#008CFF] to-[#0059B2] rounded-[1.5rem] flex items-center justify-center mr-6 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                                    <span class="font-black text-white text-4xl drop-shadow-md">V</span>
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-[11px] font-black tracking-widest text-white/70 mb-1 uppercase">Venmo</p>
+                                    <p class="font-bold text-xl tracking-tight text-white group-hover:text-mvc-gold transition-colors">@Rylee-Angela-2026</p>
+                                </div>
+                            </button>
+                            
+                            <!-- CashApp -->
+                            <button onclick="copyToClipboard('$GradTrip2026', 'CashApp')" class="flex items-center bg-white/10 border border-white/30 hover:bg-white/20 hover:border-mvc-gold p-8 rounded-[2.5rem] transition-all duration-300 group shadow-2xl backdrop-blur-md">
+                                <div class="w-20 h-20 bg-gradient-to-br from-[#00D632] to-[#00A025] rounded-[1.5rem] flex items-center justify-center mr-6 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                                    <span class="font-black text-white text-4xl drop-shadow-md">$</span>
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-[11px] font-black tracking-widest text-white/70 mb-1 uppercase">CashApp</p>
+                                    <p class="font-bold text-xl tracking-tight text-white group-hover:text-mvc-gold transition-colors">$GradTrip2026</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upgraded Toast Notification -->
+                <div id="copy-toast" class="mt-8 text-mvc-dark font-black h-10 opacity-0 transition-all text-sm tracking-[0.5em] uppercase bg-mvc-gold inline-block px-10 py-3 rounded-full shadow-[0_0_30px_rgba(255,199,44,0.4)]">
+                    Handle copied!
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white section-spacing text-center px-6">
+        <div class="max-w-xs mx-auto mb-16 flex items-center justify-center space-x-10">
+            <div class="h-0.5 bg-slate-100 flex-grow"></div>
+            <span class="text-5xl opacity-40 grayscale hover:grayscale-0 transition-all cursor-pointer">🦁</span>
+            <div class="h-0.5 bg-slate-100 flex-grow"></div>
+        </div>
+        <p class="serif italic text-6xl text-mvc-teal mb-8">Rylee & Angela</p>
+        <p class="uppercase tracking-[1em] text-[12px] font-black text-slate-300 mb-12">MVC • Class of 2026</p>
+        <p class="text-slate-400 text-sm font-medium max-w-md mx-auto leading-loose uppercase tracking-[0.2em] opacity-80">
+            Thank you for being part of our story and supporting our shared success.
+        </p>
+    </footer>
+
+    <script>
+        function copyToClipboard(text, platform) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            const toast = document.getElementById('copy-toast');
+            toast.innerText = platform + " handle copied: " + text;
+            toast.classList.remove('opacity-0', 'translate-y-4');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-4');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
