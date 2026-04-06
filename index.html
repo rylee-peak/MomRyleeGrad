@@ -6,7 +6,6 @@
     <title>Rylee & Angela - Graduation 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Properly configure our custom MVC colors so Tailwind CSS can use them for text, backgrounds, and opacities!
         tailwind.config = {
             theme: {
                 extend: {
@@ -20,113 +19,72 @@
         }
     </script>
     <style>
-        /* MVC Official Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap');
         
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: white;
-            color: #0a1a1a;
-            line-height: 1.6;
-        }
+        body { font-family: 'Montserrat', sans-serif; background-color: white; color: #0a1a1a; line-height: 1.6; scroll-behavior: smooth; }
+        .serif { font-family: 'EB Garamond', serif; }
 
-        .serif {
-            font-family: 'EB Garamond', serif;
-        }
-
-        /* Hero with Parallax Feel */
         .hero-section {
             background: linear-gradient(135deg, rgba(0, 132, 137, 0.85) 0%, rgba(0, 60, 62, 0.8) 100%), 
                         url('https://images.unsplash.com/photo-1523050853063-915894b9de9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-size: cover; background-position: center; background-attachment: fixed;
         }
+        .text-glow { text-shadow: 0 0 20px rgba(255, 199, 44, 0.5); }
+        .card-perspective { transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); border: 1px solid rgba(0, 132, 137, 0.08); }
+        .card-perspective:hover { transform: translateY(-15px); box-shadow: 0 30px 60px -12px rgba(0, 132, 137, 0.25); border-color: #008489; }
+        .section-spacing { padding-top: 8rem; padding-bottom: 8rem; }
+        .btn-hover { transition: all 0.3s ease; box-shadow: 0 15px 30px -10px rgba(0, 132, 137, 0.3); }
+        .btn-hover:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 40px -12px rgba(0, 132, 137, 0.5); }
+        
+        .float-nyc { animation: bounce-slow 5s ease-in-out infinite; }
+        @keyframes bounce-slow { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-25px) rotate(3deg); } }
 
-        .text-glow {
-            text-shadow: 0 0 20px rgba(255, 199, 44, 0.5);
-        }
-
-        /* Card Styling */
-        .card-perspective {
-            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border: 1px solid rgba(0, 132, 137, 0.08);
-        }
-        .card-perspective:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 30px 60px -12px rgba(0, 132, 137, 0.25);
-            border-color: #008489;
-        }
-
-        /* Spacing Utilities */
-        .section-spacing {
-            padding-top: 10rem;
-            padding-bottom: 10rem;
-        }
-
-        .btn-hover {
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 30px -10px rgba(0, 132, 137, 0.3);
-        }
-        .btn-hover:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 40px -12px rgba(0, 132, 137, 0.5);
-        }
-
-        .float-nyc {
-            animation: bounce-slow 5s ease-in-out infinite;
-        }
-        @keyframes bounce-slow {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(3deg); }
-        }
-
-        /* NEW NYC BACKGROUND & GLASS EFFECT */
         .nyc-section {
             background: linear-gradient(180deg, rgba(0, 132, 137, 0.3) 0%, rgba(0, 96, 99, 0.9) 100%), 
                         url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-size: cover; background-position: center; background-attachment: fixed;
         }
         .glass-panel {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
         }
+
+        /* Progress Circle Styling */
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.8s ease-in-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        /* Hidden Utility */
+        .hidden-el { display: none !important; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased relative">
 
-    <!-- HERO SECTION -->
-    <header class="hero-section min-h-screen flex items-center justify-center text-center text-white px-6 relative">
-        <div class="max-w-5xl relative z-10 py-20">
-            <div class="mb-10 inline-block border-2 border-mvc-gold px-10 py-3 rounded-full text-[12px] font-black tracking-[0.5em] uppercase text-mvc-gold bg-black/10 backdrop-blur-sm">
-                Mother & Son Milestone
+    <!-- MAIN PUBLIC CONTENT -->
+    <div id="public-view">
+        <!-- HERO SECTION -->
+        <header class="hero-section min-h-screen flex items-center justify-center text-center text-white px-6 relative">
+            <div class="max-w-5xl relative z-10 py-20">
+                <div class="mb-10 mt-10 inline-block border-2 border-mvc-gold px-10 py-3 rounded-full text-[12px] font-black tracking-[0.5em] uppercase text-mvc-gold bg-black/10 backdrop-blur-sm">
+                    Mother & Son Milestone
+                </div>
+                <h1 class="serif text-7xl md:text-9xl mb-8 italic leading-tight text-glow">Rylee & Angela</h1>
+                <p class="text-2xl md:text-4xl font-light mb-12 opacity-90 tracking-[0.2em] uppercase">Class of 2026</p>
+                <div class="h-2 w-40 bg-mvc-gold mx-auto mb-12 rounded-full"></div>
+                <p class="text-xl md:text-3xl max-w-4xl mx-auto leading-relaxed font-light mb-16 opacity-95">
+                    Two Graduations. Two Degrees. One Journey.<br>
+                    Celebrating our simultaneous achievement of our <span class="font-bold text-mvc-gold">Associate’s Degrees</span> from Moreno Valley College.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-8 justify-center">
+                    <a href="#rsvp" class="bg-white text-mvc-teal px-14 py-6 rounded-2xl font-black uppercase tracking-widest text-xs btn-hover">RSVP Now</a>
+                    <a href="#nyc-trip" class="bg-mvc-gold text-mvc-dark px-14 py-6 rounded-2xl font-black uppercase tracking-widest text-xs btn-hover">NYC Trip Fund</a>
+                </div>
             </div>
-            <h1 class="serif text-7xl md:text-9xl mb-8 italic leading-tight text-glow">Rylee & Angela</h1>
-            <p class="text-2xl md:text-4xl font-light mb-12 opacity-90 tracking-[0.2em] uppercase">Class of 2026</p>
-            
-            <div class="h-2 w-40 bg-mvc-gold mx-auto mb-12 rounded-full"></div>
-            
-            <p class="text-xl md:text-3xl max-w-4xl mx-auto leading-relaxed font-light mb-16 opacity-95">
-                Two Graduations. Two Degrees. One Journey.<br>
-                Celebrating our simultaneous achievement of our <span class="font-bold text-mvc-gold">Associate’s Degrees</span> from Moreno Valley College.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-8 justify-center">
-                <a href="#ceremony" class="bg-white text-mvc-teal px-14 py-6 rounded-2xl font-black uppercase tracking-widest text-xs btn-hover">The Ceremonies</a>
-                <a href="#nyc-trip" class="bg-mvc-gold text-mvc-dark px-14 py-6 rounded-2xl font-black uppercase tracking-widest text-xs btn-hover">NYC Trip Fund</a>
-            </div>
-        </div>
-        
-        <!-- Bottom Fade -->
-        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent"></div>
-    </header>
+            <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent"></div>
+        </header>
 
-    <main>
         <!-- COMMENCEMENT SECTION -->
         <section id="ceremony" class="section-spacing px-6 bg-white">
             <div class="max-w-7xl mx-auto">
@@ -138,80 +96,64 @@
 
                 <div class="grid lg:grid-cols-2 gap-16">
                     <!-- VALLEY VIEW CARD -->
-                    <div class="bg-slate-50 p-16 rounded-[4rem] card-perspective relative overflow-hidden group">
+                    <div class="bg-slate-50 p-10 md:p-16 rounded-[4rem] card-perspective relative overflow-hidden group">
                         <div class="absolute -top-10 -right-10 p-10 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:rotate-12">
-                            <span class="text-[15rem]">🎓</span>
+                            <span class="text-[15rem]">🦅</span>
                         </div>
-                        
                         <div class="relative z-10">
                             <h3 class="serif text-5xl text-mvc-teal italic mb-4">Valley View High School</h3>
                             <p class="font-black text-slate-800 uppercase tracking-[0.2em] text-sm mb-12 border-b border-slate-200 pb-4 inline-block">Rylee's Graduation</p>
                             
                             <div class="space-y-6">
-                                <div class="flex items-center p-8 bg-white rounded-[2.5rem] shadow-sm border border-slate-100">
-                                    <div class="w-16 h-16 bg-mvc-teal/10 rounded-3xl flex items-center justify-center mr-6">
-                                        <span class="text-2xl">📅</span>
-                                    </div>
+                                <div class="flex items-center p-6 md:p-8 bg-white rounded-[2.5rem] shadow-sm border border-slate-100">
+                                    <div class="w-16 h-16 bg-mvc-teal/10 rounded-3xl flex items-center justify-center mr-6"><span class="text-2xl">📅</span></div>
                                     <div>
                                         <p class="font-black text-lg text-mvc-teal">June 11th, 2026</p>
                                         <p class="text-sm text-slate-400 font-medium uppercase tracking-widest">6:00 PM</p>
                                     </div>
                                 </div>
-                                <div class="flex items-center p-8 bg-white rounded-[2.5rem] shadow-sm border border-slate-100">
-                                    <div class="w-16 h-16 bg-mvc-teal/10 rounded-3xl flex items-center justify-center mr-6">
-                                        <span class="text-2xl">📍</span>
-                                    </div>
+                                <div class="flex items-center p-6 md:p-8 bg-white rounded-[2.5rem] shadow-sm border border-slate-100">
+                                    <div class="w-16 h-16 bg-mvc-teal/10 rounded-3xl flex items-center justify-center mr-6"><span class="text-2xl">📍</span></div>
                                     <div>
                                         <p class="font-black text-lg text-mvc-teal">Valley View Stadium</p>
                                         <p class="text-sm text-slate-400 font-medium uppercase tracking-widest">Moreno Valley, CA</p>
                                     </div>
                                 </div>
-                                
                                 <a href="https://go.rpeak.org/VVHS_grad" target="_blank" class="flex items-center justify-center w-full p-6 bg-white rounded-[2.5rem] shadow-sm border border-slate-100 hover:border-mvc-teal transition-all group">
                                     <svg class="w-8 h-8 mr-4 text-red-600 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M21.582 6.186a2.665 2.665 0 0 0-1.884-1.884C18.04 3.84 12 3.84 12 3.84s-6.04 0-7.698.462a2.665 2.665 0 0 0-1.884 1.884C1.956 7.844 1.956 12 1.956 12s0 4.156.462 5.814a2.665 2.665 0 0 0 1.884 1.884C6.04 20.16 12 20.16 12 20.16s6.04 0 7.698-.462a2.665 2.665 0 0 0 1.884-1.884C22.044 16.156 22.044 12 22.044 12s0-4.156-.462-5.814zM9.96 15.528V8.472L16.08 12l-6.12 3.528z"/></svg>
-                                    <div>
-                                        <p class="font-black text-mvc-teal uppercase tracking-widest text-xs">Watch Live on YouTube</p>
-                                    </div>
+                                    <div><p class="font-black text-mvc-teal uppercase tracking-widest text-xs">Watch Live</p></div>
                                 </a>
                             </div>
                         </div>
                     </div>
 
                     <!-- MVC CARD -->
-                    <div class="bg-mvc-teal/5 p-16 rounded-[4rem] card-perspective relative overflow-hidden group border-2 border-mvc-teal/10">
+                    <div class="bg-mvc-teal/5 p-10 md:p-16 rounded-[4rem] card-perspective relative overflow-hidden group border-2 border-mvc-teal/10">
                         <div class="absolute -top-10 -right-10 p-10 opacity-5 group-hover:opacity-10 transition-all duration-700 group-hover:rotate-12">
                             <span class="text-[15rem] text-mvc-teal">🦁</span>
                         </div>
-                        
                         <div class="relative z-10">
                             <h3 class="serif text-5xl text-mvc-teal italic mb-4">Moreno Valley College</h3>
                             <p class="font-black text-slate-800 uppercase tracking-[0.2em] text-sm mb-12 border-b border-mvc-teal/20 pb-4 inline-block">Rylee & Angela</p>
                             
                             <div class="space-y-6">
-                                <div class="flex items-center p-8 bg-white rounded-[2.5rem] shadow-sm border border-mvc-teal/10">
-                                    <div class="w-16 h-16 bg-mvc-gold rounded-3xl flex items-center justify-center mr-6 shadow-md">
-                                        <span class="text-2xl">🎓</span>
-                                    </div>
+                                <div class="flex items-center p-6 md:p-8 bg-white rounded-[2.5rem] shadow-sm border border-mvc-teal/10">
+                                    <div class="w-16 h-16 bg-mvc-gold rounded-3xl flex items-center justify-center mr-6 shadow-md"><span class="text-2xl">🎓</span></div>
                                     <div>
                                         <p class="font-black text-lg text-mvc-teal">June 12th, 2026</p>
                                         <p class="text-sm text-slate-400 font-medium uppercase tracking-widest">6:00 PM</p>
                                     </div>
                                 </div>
-                                <div class="flex items-center p-8 bg-white rounded-[2.5rem] shadow-sm border border-mvc-teal/10">
-                                    <div class="w-16 h-16 bg-mvc-gold rounded-3xl flex items-center justify-center mr-6 shadow-md">
-                                        <span class="text-2xl">📍</span>
-                                    </div>
+                                <div class="flex items-center p-6 md:p-8 bg-white rounded-[2.5rem] shadow-sm border border-mvc-teal/10">
+                                    <div class="w-16 h-16 bg-mvc-gold rounded-3xl flex items-center justify-center mr-6 shadow-md"><span class="text-2xl">📍</span></div>
                                     <div>
                                         <p class="font-black text-lg text-mvc-teal">College Park</p>
                                         <p class="text-sm text-slate-400 font-medium uppercase tracking-widest">Soccer Fields at MVC</p>
                                     </div>
                                 </div>
-                                
                                 <a href="https://go.rpeak.org/MVC_grad" target="_blank" class="flex items-center justify-center w-full p-6 bg-white rounded-[2.5rem] shadow-sm border border-mvc-teal/10 hover:border-mvc-teal transition-all group">
                                     <svg class="w-8 h-8 mr-4 text-red-600 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M21.582 6.186a2.665 2.665 0 0 0-1.884-1.884C18.04 3.84 12 3.84 12 3.84s-6.04 0-7.698.462a2.665 2.665 0 0 0-1.884 1.884C1.956 7.844 1.956 12 1.956 12s0 4.156.462 5.814a2.665 2.665 0 0 0 1.884 1.884C6.04 20.16 12 20.16 12 20.16s6.04 0 7.698-.462a2.665 2.665 0 0 0 1.884-1.884C22.044 16.156 22.044 12 22.044 12s0-4.156-.462-5.814zM9.96 15.528V8.472L16.08 12l-6.12 3.528z"/></svg>
-                                    <div>
-                                        <p class="font-black text-mvc-teal uppercase tracking-widest text-xs">Watch Live on YouTube</p>
-                                    </div>
+                                    <div><p class="font-black text-mvc-teal uppercase tracking-widest text-xs">Watch Live</p></div>
                                 </a>
                             </div>
                         </div>
@@ -220,49 +162,116 @@
             </div>
         </section>
 
-        <!-- WISH LIST SECTION (High-Impact Teal) -->
-        <section class="section-spacing bg-mvc-teal text-white overflow-hidden relative shadow-inner">
-            <div class="max-w-5xl mx-auto px-6 text-center relative z-10 py-10">
-                <p class="uppercase tracking-[0.5em] text-xs font-black text-white/60 mb-8">Celebration Gifts</p>
-                <h2 class="serif text-6xl md:text-7xl italic mb-10">Our Wish List</h2>
-                <p class="text-2xl md:text-3xl opacity-90 mb-16 font-light max-w-2xl mx-auto leading-relaxed">
-                    We've curated a small registry at Target for essentials as we start our next academic chapters.
-                </p>
+        <!-- PUBLIC RSVP SECTION -->
+        <section id="rsvp" class="section-spacing bg-slate-50 border-t border-slate-200">
+            <div class="max-w-3xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="serif text-5xl text-mvc-teal italic mb-4">RSVP</h2>
+                    <p class="text-slate-500">Enter your unique code to let us know if you can make it.</p>
+                </div>
                 
-                <a href="https://www.target.com/gift-registry" target="_blank" class="bg-white text-mvc-teal px-16 py-7 rounded-[2.5rem] font-black uppercase tracking-[0.4em] text-sm shadow-2xl btn-hover inline-flex items-center group">
-                    <svg class="w-8 h-8 mr-5 text-red-600 group-hover:scale-125 transition-transform" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-12.5c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5 4.5-2.02 4.5-4.5-2.02-4.5-4.5-4.5z"/></svg>
-                    Target Registry
-                </a>
+                <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-100">
+                    <!-- Search State -->
+                    <div id="rsvp-search-state">
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Unique Code</label>
+                        <input type="text" id="rsvp-code-input" class="w-full p-4 border border-slate-300 rounded-xl mb-4 text-lg font-bold tracking-widest uppercase focus:ring-2 focus:ring-mvc-teal outline-none" placeholder="e.g. GRAD26">
+                        <button onclick="findRSVP()" class="w-full bg-mvc-teal text-white font-bold py-4 rounded-xl uppercase tracking-widest text-sm hover:bg-opacity-90 transition-all">Find My Invitation</button>
+                        <p id="rsvp-error" class="text-red-500 text-sm mt-4 hidden font-bold text-center"></p>
+                    </div>
+
+                    <!-- Form State -->
+                    <div id="rsvp-form-state" class="hidden-el space-y-6">
+                        <div class="text-center mb-8 border-b border-slate-100 pb-6">
+                            <p class="text-slate-400 text-sm uppercase tracking-widest mb-2">Welcome</p>
+                            <h3 id="rsvp-guest-name" class="text-3xl font-black text-mvc-teal"></h3>
+                        </div>
+
+                        <div>
+                            <p class="font-bold mb-2 text-slate-800">Email Address <span class="text-slate-400 font-normal text-xs">(for any updates)</span></p>
+                            <input type="email" id="rsvp-email" class="w-full p-4 border-2 border-slate-200 rounded-xl outline-none focus:border-mvc-teal focus:ring-0 mb-6 transition-colors" placeholder="your@email.com">
+                        </div>
+
+                        <div>
+                            <p class="font-bold mb-3 text-slate-800">Will you be joining us?</p>
+                            <div class="relative mb-6">
+                                <select id="rsvp-status" class="w-full p-4 appearance-none border-2 border-slate-200 rounded-xl outline-none focus:border-mvc-teal bg-white font-bold text-slate-700 cursor-pointer transition-colors">
+                                    <option value="" disabled selected>Please select...</option>
+                                    <option value="attending">Joyfully Accept</option>
+                                    <option value="declined">Regretfully Decline</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-slate-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="rsvp-events-section" class="hidden-el space-y-4 p-6 bg-slate-50 rounded-2xl border border-slate-200">
+                            <p class="font-bold text-sm text-slate-600 uppercase tracking-widest mb-4">Which ceremonies?</p>
+                            
+                            <!-- Custom Style Checkbox VVHS -->
+                            <label id="rsvp-vvhs-container" class="relative flex items-center cursor-pointer p-4 bg-white border-2 border-slate-200 rounded-xl hover:border-mvc-teal hover:shadow-md transition-all shadow-sm has-[:checked]:border-mvc-teal has-[:checked]:bg-mvc-teal/5">
+                                <input type="checkbox" id="rsvp-vvhs" class="peer sr-only">
+                                <div class="w-7 h-7 border-2 border-slate-300 rounded-lg flex items-center justify-center peer-checked:bg-mvc-teal peer-checked:border-mvc-teal transition-all shadow-inner bg-slate-50 peer-checked:shadow-none">
+                                    <svg class="w-5 h-5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <span class="ml-4 font-bold text-slate-700">Valley View High School (June 11)</span>
+                            </label>
+                            
+                            <!-- Custom Style Checkbox MVC -->
+                            <label id="rsvp-mvc-container" class="relative flex items-center cursor-pointer p-4 bg-white border-2 border-slate-200 rounded-xl hover:border-mvc-teal hover:shadow-md transition-all shadow-sm has-[:checked]:border-mvc-teal has-[:checked]:bg-mvc-teal/5">
+                                <input type="checkbox" id="rsvp-mvc" class="peer sr-only">
+                                <div class="w-7 h-7 border-2 border-slate-300 rounded-lg flex items-center justify-center peer-checked:bg-mvc-teal peer-checked:border-mvc-teal transition-all shadow-inner bg-slate-50 peer-checked:shadow-none">
+                                    <svg class="w-5 h-5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <span class="ml-4 font-bold text-slate-700">Moreno Valley College (June 12)</span>
+                            </label>
+                        </div>
+
+                        <button onclick="submitRSVP()" class="w-full bg-mvc-gold text-mvc-dark font-black py-4 rounded-xl uppercase tracking-widest text-sm hover:bg-opacity-90 transition-all mt-4">Submit RSVP</button>
+                    </div>
+
+                    <!-- Success State -->
+                    <div id="rsvp-success-state" class="hidden-el text-center py-10">
+                        <span class="text-6xl mb-4 block">🎉</span>
+                        <h3 class="text-2xl font-black text-mvc-teal mb-2">Thank You!</h3>
+                        <p id="rsvp-success-message" class="text-slate-500 text-lg">Your RSVP has been saved successfully.</p>
+                    </div>
+                </div>
             </div>
-            <!-- Background detail -->
-            <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(white 1.5px, transparent 0); background-size: 60px 60px;"></div>
         </section>
 
-        <!-- NYC TRIP SECTION (The Full Standout) -->
+        <!-- PHOTO GALLERY -->
+        <section id="photos" class="section-spacing bg-white border-t border-slate-100">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="serif text-5xl text-mvc-teal italic mb-4">Memories</h2>
+                    <p class="text-slate-500">A look back at our journey.</p>
+                </div>
+                <!-- Dynamic Masonry Grid -->
+                <div id="photo-gallery-grid" class="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6">
+                    <!-- Photos injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- NYC TRIP SECTION -->
         <section id="nyc-trip" class="section-spacing nyc-section text-white relative overflow-hidden">
             <div class="max-w-6xl mx-auto px-6 relative z-10 text-center py-10">
                 <div class="mb-16">
                     <div class="inline-block mb-10 relative">
                         <span class="text-[10rem] md:text-[14rem] block float-nyc opacity-95 drop-shadow-2xl">🗽</span>
-                        <!-- Subtle glow behind statue -->
                         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-[120%] h-10 bg-mvc-teal/40 blur-2xl rounded-full -z-10"></div>
                     </div>
-                    
                     <p class="uppercase tracking-[0.5em] text-mvc-gold font-black text-sm mb-6 drop-shadow-md">Our Next Adventure</p>
                     <h2 class="serif text-7xl md:text-9xl italic text-white mb-12 tracking-tight text-glow">The Big Apple</h2>
                     
-                    <!-- Sleek Glassmorphism Container -->
                     <div class="glass-panel p-10 md:p-16 rounded-[3rem] max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
-                        <!-- Top gold accent line inside glass -->
                         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-mvc-gold to-transparent opacity-60"></div>
-                        
                         <p class="text-2xl md:text-4xl opacity-90 mb-16 leading-relaxed font-light text-shadow">
                             To celebrate our shared hard work, we are planning a dream trip to <span class="text-mvc-gold font-bold">New York City</span>! 
                             Your support in helping us reach our goal is the ultimate graduation gift.
                         </p>
-                        
                         <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                            <!-- Venmo -->
                             <button onclick="copyToClipboard('@Rylee-Angela-2026', 'Venmo')" class="flex items-center bg-white/10 border border-white/30 hover:bg-white/20 hover:border-mvc-gold p-8 rounded-[2.5rem] transition-all duration-300 group shadow-2xl backdrop-blur-md">
                                 <div class="w-20 h-20 bg-gradient-to-br from-[#008CFF] to-[#0059B2] rounded-[1.5rem] flex items-center justify-center mr-6 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                                     <span class="font-black text-white text-4xl drop-shadow-md">V</span>
@@ -272,8 +281,6 @@
                                     <p class="font-bold text-xl tracking-tight text-white group-hover:text-mvc-gold transition-colors">@Rylee-Angela-2026</p>
                                 </div>
                             </button>
-                            
-                            <!-- CashApp -->
                             <button onclick="copyToClipboard('$GradTrip2026', 'CashApp')" class="flex items-center bg-white/10 border border-white/30 hover:bg-white/20 hover:border-mvc-gold p-8 rounded-[2.5rem] transition-all duration-300 group shadow-2xl backdrop-blur-md">
                                 <div class="w-20 h-20 bg-gradient-to-br from-[#00D632] to-[#00A025] rounded-[1.5rem] flex items-center justify-center mr-6 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                                     <span class="font-black text-white text-4xl drop-shadow-md">$</span>
@@ -286,47 +293,630 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Upgraded Toast Notification -->
                 <div id="copy-toast" class="mt-8 text-mvc-dark font-black h-10 opacity-0 transition-all text-sm tracking-[0.5em] uppercase bg-mvc-gold inline-block px-10 py-3 rounded-full shadow-[0_0_30px_rgba(255,199,44,0.4)]">
                     Handle copied!
                 </div>
             </div>
         </section>
-    </main>
+    </div>
 
-    <!-- FOOTER -->
-    <footer class="bg-white section-spacing text-center px-6">
+    <!-- ADMIN LOGIN MODAL -->
+    <div id="admin-login-modal" class="hidden-el fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center px-4">
+        <div class="bg-white p-10 rounded-[2.5rem] w-full max-w-md shadow-2xl">
+            <h3 class="serif text-3xl text-mvc-teal italic mb-6">Admin Portal</h3>
+            <input type="email" id="admin-email" placeholder="Email" class="w-full p-4 mb-4 border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-mvc-teal">
+            <input type="password" id="admin-pass" placeholder="Password" class="w-full p-4 mb-6 border border-slate-300 rounded-xl outline-none focus:ring-2 focus:ring-mvc-teal">
+            <div class="flex space-x-4 mb-6">
+                <button onclick="closeAdminLogin()" class="w-1/3 bg-slate-100 text-slate-600 font-bold py-3 rounded-xl uppercase text-xs hover:bg-slate-200 transition-colors">Cancel</button>
+                <button onclick="loginAdmin()" class="w-2/3 bg-mvc-teal text-white font-bold py-3 rounded-xl uppercase tracking-widest text-xs hover:bg-opacity-90">Login</button>
+            </div>
+            
+            <div class="relative flex items-center py-2 mb-6">
+                <div class="flex-grow border-t border-slate-200"></div>
+                <span class="flex-shrink-0 mx-4 text-slate-400 text-xs font-bold uppercase tracking-widest">Or</span>
+                <div class="flex-grow border-t border-slate-200"></div>
+            </div>
+
+            <button onclick="loginWithGoogle()" class="w-full flex items-center justify-center border-2 border-slate-200 text-slate-700 font-bold py-3 rounded-xl hover:bg-slate-50 transition-colors">
+                <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                Sign in with Google
+            </button>
+            <p id="admin-login-err" class="text-red-500 text-xs mt-4 text-center hidden"></p>
+        </div>
+    </div>
+
+    <!-- GLOBAL CONFIRMATION MODAL -->
+    <div id="confirm-modal" class="hidden-el fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[70] flex items-center justify-center px-4">
+        <div class="bg-white p-8 rounded-[2rem] w-full max-w-sm shadow-2xl text-center">
+            <h3 id="confirm-title" class="text-2xl font-black text-slate-800 mb-2">Are you sure?</h3>
+            <p id="confirm-msg" class="text-sm text-slate-500 mb-8">This action cannot be undone.</p>
+            <div class="flex space-x-4">
+                <button onclick="closeConfirmModal()" class="w-1/2 bg-slate-100 text-slate-600 font-bold py-4 rounded-xl uppercase text-xs hover:bg-slate-200 transition-colors">Cancel</button>
+                <button onclick="executeConfirmAction()" class="w-1/2 bg-red-500 text-white font-bold py-4 rounded-xl uppercase tracking-widest text-xs hover:bg-red-600 transition-colors">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GUEST DETAILS MODAL -->
+    <div id="guest-details-modal" class="hidden-el fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[60] flex items-center justify-center px-4">
+        <div class="bg-white p-8 rounded-[2rem] w-full max-w-md shadow-2xl relative">
+            <button onclick="closeGuestModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-800 transition-colors bg-slate-100 p-2 rounded-full">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 id="gd-name" class="serif text-4xl text-mvc-teal italic mb-1 pr-10">Guest Name</h3>
+            <p id="gd-code" class="font-mono text-slate-400 text-xs mb-8 uppercase tracking-widest font-bold">CODE</p>
+            
+            <div class="space-y-4 mb-8 text-sm text-slate-700">
+                <div class="flex justify-between border-b border-slate-100 pb-3">
+                    <span class="font-bold uppercase tracking-widest text-[10px] text-slate-400">Email</span>
+                    <span id="gd-email" class="font-medium">none</span>
+                </div>
+                <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                    <span class="font-bold uppercase tracking-widest text-[10px] text-slate-400">RSVP Status</span>
+                    <span id="gd-status" class="font-black uppercase tracking-widest text-[10px] px-2 py-1 rounded">PENDING</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-100 pb-3">
+                    <span class="font-bold uppercase tracking-widest text-[10px] text-slate-400">Valley View (June 11)</span>
+                    <span id="gd-vvhs" class="font-medium">Yes</span>
+                </div>
+                <div class="flex justify-between border-b border-slate-100 pb-3">
+                    <span class="font-bold uppercase tracking-widest text-[10px] text-slate-400">MVC (June 12)</span>
+                    <span id="gd-mvc" class="font-medium">No</span>
+                </div>
+            </div>
+            
+            <button id="gd-delete-btn" class="w-full bg-red-50 text-red-500 font-bold py-4 rounded-xl uppercase tracking-widest text-xs hover:bg-red-500 hover:text-white transition-colors">
+                Remove Guest
+            </button>
+        </div>
+    </div>
+
+    <!-- SECURE ADMIN DASHBOARD (Hidden until auth) -->
+    <div id="admin-dashboard" class="hidden-el min-h-screen bg-slate-100 pb-20">
+        <div class="bg-mvc-teal text-white py-8 px-6 shadow-md">
+            <div class="max-w-6xl mx-auto flex justify-between items-center">
+                <div>
+                    <h2 class="serif text-3xl italic">Admin Dashboard</h2>
+                    <p class="text-xs uppercase tracking-widest opacity-70">Manage RSVPs & Photos</p>
+                </div>
+                <button onclick="logoutAdmin()" class="bg-white/20 px-6 py-2 rounded-full font-bold text-xs uppercase hover:bg-white hover:text-mvc-teal transition-all">Logout</button>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 mt-10 grid lg:grid-cols-3 gap-8">
+            <!-- Left Column: Tickets & Add Photo -->
+            <div class="lg:col-span-1 space-y-8">
+                <!-- TICKET TRACKER -->
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-200">
+                    <h3 class="font-black text-slate-800 uppercase tracking-widest text-sm mb-6 border-b pb-4">Ticket Status</h3>
+                    
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="text-center w-1/2">
+                            <div class="relative w-24 h-24 mx-auto mb-3">
+                                <svg class="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                                    <circle class="text-slate-100 stroke-current" stroke-width="8" cx="50" cy="50" r="40" fill="transparent"></circle>
+                                    <circle id="vvhs-ring" class="text-mvc-teal stroke-current transition-all duration-1000" stroke-width="8" stroke-linecap="round" cx="50" cy="50" r="40" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="251.2"></circle>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center flex-col">
+                                    <span id="vvhs-count" class="text-xl font-black text-slate-800">0</span>
+                                    <span class="text-[10px] text-slate-400">/ 7</span>
+                                </div>
+                            </div>
+                            <p class="font-bold text-xs uppercase tracking-widest text-mvc-teal">VVHS</p>
+                            <p class="text-[10px] text-slate-400 mt-1" id="vvhs-pending">Pending: 0</p>
+                        </div>
+                        
+                        <div class="text-center w-1/2 border-l border-slate-100">
+                            <div class="relative w-24 h-24 mx-auto mb-3">
+                                <svg class="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                                    <circle class="text-slate-100 stroke-current" stroke-width="8" cx="50" cy="50" r="40" fill="transparent"></circle>
+                                    <circle id="mvc-ring" class="text-mvc-gold stroke-current transition-all duration-1000" stroke-width="8" stroke-linecap="round" cx="50" cy="50" r="40" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="251.2"></circle>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center flex-col">
+                                    <span id="mvc-count" class="text-xl font-black text-slate-800">0</span>
+                                    <span class="text-[10px] text-slate-400">/ 12</span>
+                                </div>
+                            </div>
+                            <p class="font-bold text-xs uppercase tracking-widest text-mvc-gold">MVC</p>
+                            <p class="text-[10px] text-slate-400 mt-1" id="mvc-pending">Pending: 0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADD PHOTO -->
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-200">
+                    <h3 class="font-black text-slate-800 uppercase tracking-widest text-sm mb-6 border-b pb-4">Add Photo to Gallery</h3>
+                    <input type="text" id="admin-photo-url" placeholder="Cloudflare CDN URL" class="w-full p-4 mb-4 border border-slate-300 rounded-xl outline-none text-sm focus:ring-2 focus:ring-mvc-teal">
+                    <button onclick="addPhoto()" class="w-full bg-slate-800 text-white font-bold py-3 rounded-xl uppercase tracking-widest text-xs hover:bg-slate-700 transition-colors">Upload Photo</button>
+                    <p id="photo-msg" class="text-emerald-500 text-xs mt-2 text-center hidden font-bold">Added!</p>
+                </div>
+
+                <!-- ADMIN PHOTO MANAGEMENT -->
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-200">
+                    <h3 class="font-black text-slate-800 uppercase tracking-widest text-sm mb-6 border-b pb-4">Manage Photos</h3>
+                    <div id="admin-photo-grid" class="grid grid-cols-3 gap-3">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Create Invites & Table -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- CREATE INVITE -->
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-200">
+                    <h3 class="font-black text-slate-800 uppercase tracking-widest text-sm mb-6 border-b pb-4">Create New Invite</h3>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-4">
+                        <input type="text" id="invite-name" placeholder="Guest Name" class="flex-1 p-4 border border-slate-300 rounded-xl outline-none text-sm focus:ring-2 focus:ring-mvc-teal">
+                        <div class="flex flex-1 gap-2">
+                            <input type="text" id="invite-code" placeholder="Custom Code (or auto)" class="flex-1 p-4 border border-slate-300 rounded-xl outline-none text-sm uppercase focus:ring-2 focus:ring-mvc-teal">
+                            <button onclick="generateRandomCode()" class="bg-slate-100 px-4 rounded-xl text-xl hover:bg-slate-200" title="Generate Random">🎲</button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-4 mb-8 mt-2">
+                        <p class="w-full text-xs font-bold text-slate-500 uppercase tracking-widest">Invited To:</p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <label class="relative flex items-center cursor-pointer flex-1 p-4 bg-white border-2 border-slate-200 rounded-xl hover:border-mvc-teal hover:shadow-md transition-all shadow-sm has-[:checked]:border-mvc-teal has-[:checked]:bg-mvc-teal/5">
+                                <input type="checkbox" id="invite-vvh-elig" class="peer sr-only">
+                                <div class="w-6 h-6 border-2 border-slate-300 rounded-md flex items-center justify-center peer-checked:bg-mvc-teal peer-checked:border-mvc-teal transition-all shadow-inner bg-slate-50 peer-checked:shadow-none">
+                                    <svg class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <span class="ml-3 font-bold text-sm text-slate-700">Valley View HS</span>
+                            </label>
+                            
+                            <label class="relative flex items-center cursor-pointer flex-1 p-4 bg-white border-2 border-slate-200 rounded-xl hover:border-mvc-teal hover:shadow-md transition-all shadow-sm has-[:checked]:border-mvc-teal has-[:checked]:bg-mvc-teal/5">
+                                <input type="checkbox" id="invite-mvc-elig" class="peer sr-only">
+                                <div class="w-6 h-6 border-2 border-slate-300 rounded-md flex items-center justify-center peer-checked:bg-mvc-teal peer-checked:border-mvc-teal transition-all shadow-inner bg-slate-50 peer-checked:shadow-none">
+                                    <svg class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <span class="ml-3 font-bold text-sm text-slate-700">MVC</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button onclick="createInvite()" class="w-full bg-mvc-teal text-white font-bold py-4 rounded-xl uppercase tracking-widest text-xs hover:bg-opacity-90 transition-all">Save Invite</button>
+                    <p id="invite-msg" class="text-emerald-500 text-xs mt-2 font-bold hidden text-center">Invite Created!</p>
+                </div>
+
+                <!-- NEW CLICKABLE GUEST LIST (Replaces the Table) -->
+                <div class="bg-white rounded-[2rem] shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="p-6 border-b border-slate-100 flex justify-between items-center">
+                        <h3 class="font-black text-slate-800 uppercase tracking-widest text-sm">Guest List</h3>
+                        <span class="text-xs text-slate-400 font-bold" id="total-guests-count">0 Guests</span>
+                    </div>
+                    <div id="admin-guest-list" class="divide-y divide-slate-100 max-h-[500px] overflow-y-auto">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER WITH SECRET ADMIN LOCK -->
+    <footer id="public-footer" class="bg-white section-spacing text-center px-6 border-t border-slate-100">
         <div class="max-w-xs mx-auto mb-16 flex items-center justify-center space-x-10">
             <div class="h-0.5 bg-slate-100 flex-grow"></div>
-            <span class="text-5xl opacity-40 grayscale hover:grayscale-0 transition-all cursor-pointer">🦁</span>
+            <span class="text-5xl opacity-40 grayscale hover:grayscale-0 transition-all cursor-default">🦁</span>
             <div class="h-0.5 bg-slate-100 flex-grow"></div>
         </div>
         <p class="serif italic text-6xl text-mvc-teal mb-8">Rylee & Angela</p>
-        <p class="uppercase tracking-[1em] text-[12px] font-black text-slate-300 mb-12">MVC • Class of 2026</p>
-        <p class="text-slate-400 text-sm font-medium max-w-md mx-auto leading-loose uppercase tracking-[0.2em] opacity-80">
+        <p class="uppercase tracking-[1em] text-[12px] font-black text-slate-300 mb-6">MVC • Class of 2026</p>
+        <p class="text-slate-400 text-sm font-medium max-w-md mx-auto leading-loose uppercase tracking-[0.2em] opacity-80 mb-12">
             Thank you for being part of our story and supporting our shared success.
         </p>
+        <!-- SECRET ADMIN LOGIN BUTTON -->
+        <button onclick="document.getElementById('admin-login-modal').classList.remove('hidden-el')" class="text-slate-200 hover:text-mvc-teal transition-colors" title="Admin Login">
+            <svg class="w-4 h-4 mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C9.243 2 7 4.243 7 7v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7c0-2.757-2.243-5-5-5zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7zm4 10.723V20h-2v-2.277a1.993 1.993 0 0 1 .567-3.677A2.001 2.001 0 0 1 14 16a1.99 1.99 0 0 1-1 1.723z"/></svg>
+        </button>
     </footer>
 
-    <script>
-        function copyToClipboard(text, platform) {
-            const el = document.createElement('textarea');
-            el.value = text;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
+    <!-- FIREBASE & APP LOGIC -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, updateDoc, doc, onSnapshot, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD7WfHoP0ipe2OBoe7pgsKdscGFupQ_bCk",
+            authDomain: "rylee-and-mom-grad-website.firebaseapp.com",
+            projectId: "rylee-and-mom-grad-website",
+            storageBucket: "rylee-and-mom-grad-website.firebasestorage.app",
+            messagingSenderId: "889211112661",
+            appId: "1:889211112661:web:86709664a50cc80ad7e65c",
+            measurementId: "G-YMLDT2DBQR"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const basePath = 'artifacts/grad2026/public/data';
+        
+        let allInvites = [];
+        let allPhotos = [];
+        let currentActiveInvite = null;
+        let confirmActionFn = null;
+        let dataListenersActive = false;
+
+        const initAuth = async () => {
+            if (!auth.currentUser) {
+                try { await signInAnonymously(auth); } 
+                catch (e) { console.error("Anonymous auth failed", e); }
+            }
+        };
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                if (!dataListenersActive) {
+                    setupDataListeners();
+                    dataListenersActive = true;
+                }
+                
+                if (!user.isAnonymous) {
+                    document.getElementById('admin-login-modal').classList.add('hidden-el');
+                    document.getElementById('public-view').classList.add('hidden-el');
+                    document.getElementById('public-footer').classList.add('hidden-el');
+                    document.getElementById('admin-dashboard').classList.remove('hidden-el');
+                    renderAdminPhotos(); 
+                    updateAdminDashboard(); 
+                } else {
+                    document.getElementById('admin-dashboard').classList.add('hidden-el');
+                    document.getElementById('public-view').classList.remove('hidden-el');
+                    document.getElementById('public-footer').classList.remove('hidden-el');
+                }
+            }
+        });
+
+        initAuth();
+
+        // This ensures data pulls universally (Admin & Public)
+        function setupDataListeners() {
+            onSnapshot(collection(db, basePath, 'photos'), (snapshot) => {
+                allPhotos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderPublicPhotos();
+                if (auth.currentUser && !auth.currentUser.isAnonymous) renderAdminPhotos();
+            }, (error) => console.error("Photo error:", error));
+
+            onSnapshot(collection(db, basePath, 'invites'), (snapshot) => {
+                allInvites = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                if (auth.currentUser && !auth.currentUser.isAnonymous) updateAdminDashboard();
+            }, (error) => console.error("Invites error:", error));
+        }
+
+        // PHOTO RENDERERS
+        function renderPublicPhotos() {
+            const gallery = document.getElementById('photo-gallery-grid');
+            if(!gallery) return;
+            gallery.innerHTML = '';
+            allPhotos.forEach(photo => {
+                const img = document.createElement('img');
+                img.src = photo.url;
+                img.className = "w-full rounded-2xl shadow-md mb-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 object-cover";
+                img.loading = "lazy";
+                gallery.appendChild(img);
+            });
+        }
+
+        function renderAdminPhotos() {
+            const grid = document.getElementById('admin-photo-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            allPhotos.forEach(photo => {
+                const div = document.createElement('div');
+                div.className = "relative group rounded-xl overflow-hidden border border-slate-200 aspect-square";
+                div.innerHTML = `
+                    <img src="${photo.url}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <button onclick="confirmDeletePhoto('${photo.id}')" class="bg-red-500 text-white p-3 rounded-full hover:bg-red-600 transition-colors shadow-lg transform hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        // GLOBAL MODAL LOGIC
+        window.closeConfirmModal = () => {
+            document.getElementById('confirm-modal').classList.add('hidden-el');
+            confirmActionFn = null;
+        };
+
+        window.executeConfirmAction = () => {
+            if (confirmActionFn) confirmActionFn();
+        };
+
+        window.confirmDeleteGuest = (id, name) => {
+            document.getElementById('confirm-title').innerText = "Remove Guest";
+            document.getElementById('confirm-msg').innerText = `Are you sure you want to completely remove ${name}?`;
+            document.getElementById('confirm-modal').classList.remove('hidden-el');
             
-            const toast = document.getElementById('copy-toast');
-            toast.innerText = platform + " handle copied: " + text;
-            toast.classList.remove('opacity-0', 'translate-y-4');
-            toast.classList.add('opacity-100', 'translate-y-0');
+            confirmActionFn = async () => {
+                try {
+                    await deleteDoc(doc(db, basePath, 'invites', id));
+                    closeConfirmModal();
+                } catch (e) { alert("Failed to delete guest."); console.error(e); }
+            };
+        };
+
+        window.confirmDeletePhoto = (id) => {
+            document.getElementById('confirm-title').innerText = "Delete Photo";
+            document.getElementById('confirm-msg').innerText = `Are you sure you want to remove this photo from the gallery?`;
+            document.getElementById('confirm-modal').classList.remove('hidden-el');
             
-            setTimeout(() => {
-                toast.classList.remove('opacity-100', 'translate-y-0');
-                toast.classList.add('opacity-0', 'translate-y-4');
-            }, 3000);
+            confirmActionFn = async () => {
+                try {
+                    await deleteDoc(doc(db, basePath, 'photos', id));
+                    closeConfirmModal();
+                } catch (e) { alert("Failed to delete photo."); console.error(e); }
+            };
+        };
+
+
+        // GUEST DETAILS MODAL LOGIC (New Clickable Guest List)
+        window.openGuestModal = (id) => {
+            const guest = allInvites.find(i => i.id === id);
+            if (!guest) return;
+
+            document.getElementById('gd-name').innerText = guest.name;
+            document.getElementById('gd-code').innerText = guest.code;
+            document.getElementById('gd-email').innerText = guest.email || 'Not provided';
+            
+            const statusEl = document.getElementById('gd-status');
+            statusEl.innerText = guest.status || 'Pending';
+            statusEl.className = `font-black uppercase tracking-widest text-[10px] px-2 py-1 rounded ${guest.status === 'attending' ? 'bg-emerald-100 text-emerald-700' : guest.status === 'declined' ? 'bg-red-100 text-red-700' : 'bg-slate-100 text-slate-500'}`;
+
+            // Logic to show if they RSVP'd yes, no, or weren't even invited to that specific event
+            const vvhsText = guest.status === 'attending' ? (guest.attendingVVHS ? '✅ Attending' : '❌ Not Attending') : (guest.invitedVVHS !== false ? 'Invited' : 'Not Invited');
+            const mvcText = guest.status === 'attending' ? (guest.attendingMVC ? '✅ Attending' : '❌ Not Attending') : (guest.invitedMVC !== false ? 'Invited' : 'Not Invited');
+
+            document.getElementById('gd-vvhs').innerText = vvhsText;
+            document.getElementById('gd-mvc').innerText = mvcText;
+
+            const delBtn = document.getElementById('gd-delete-btn');
+            delBtn.onclick = () => {
+                closeGuestModal();
+                confirmDeleteGuest(guest.id, guest.name.replace(/'/g, "\\'"));
+            };
+
+            document.getElementById('guest-details-modal').classList.remove('hidden-el');
+        };
+
+        window.closeGuestModal = () => {
+            document.getElementById('guest-details-modal').classList.add('hidden-el');
+        };
+
+        // RSVP PUBLIC LOGIC
+        window.findRSVP = () => {
+            const codeInput = document.getElementById('rsvp-code-input').value.trim().toUpperCase();
+            const errEl = document.getElementById('rsvp-error');
+            
+            if (!codeInput) { errEl.innerText = "Please enter a code."; errEl.classList.remove('hidden'); return; }
+            
+            const invite = allInvites.find(i => i.code === codeInput);
+            
+            if (invite) {
+                currentActiveInvite = invite;
+                errEl.classList.add('hidden');
+                document.getElementById('rsvp-search-state').classList.add('hidden-el');
+                document.getElementById('rsvp-form-state').classList.remove('hidden-el');
+                document.getElementById('rsvp-guest-name').innerText = invite.name;
+                
+                if (invite.email) document.getElementById('rsvp-email').value = invite.email;
+
+                const isInvitedVVHS = invite.invitedVVHS !== false;
+                const isInvitedMVC = invite.invitedMVC !== false;
+                
+                document.getElementById('rsvp-vvhs-container').classList.toggle('hidden-el', !isInvitedVVHS);
+                document.getElementById('rsvp-mvc-container').classList.toggle('hidden-el', !isInvitedMVC);
+
+                if (invite.status) document.getElementById('rsvp-status').value = invite.status;
+                if (invite.attendingVVHS) document.getElementById('rsvp-vvhs').checked = true;
+                if (invite.attendingMVC) document.getElementById('rsvp-mvc').checked = true;
+                
+                toggleEventsDisplay();
+            } else {
+                errEl.innerText = "Code not found. Please try again.";
+                errEl.classList.remove('hidden');
+            }
+        };
+
+        document.getElementById('rsvp-status').addEventListener('change', toggleEventsDisplay);
+
+        function toggleEventsDisplay() {
+            const status = document.getElementById('rsvp-status').value;
+            if (status === 'attending') {
+                document.getElementById('rsvp-events-section').classList.remove('hidden-el');
+            } else {
+                document.getElementById('rsvp-events-section').classList.add('hidden-el');
+                document.getElementById('rsvp-vvhs').checked = false;
+                document.getElementById('rsvp-mvc').checked = false;
+            }
+        }
+
+        window.submitRSVP = async () => {
+            if (!currentActiveInvite) return;
+            
+            const status = document.getElementById('rsvp-status').value;
+            const email = document.getElementById('rsvp-email').value.trim();
+
+            if (!status) { alert("Please select your attendance status."); return; }
+            
+            const vvhAttending = document.getElementById('rsvp-vvhs').checked;
+            const mvcAttending = document.getElementById('rsvp-mvc').checked;
+
+            try {
+                await updateDoc(doc(db, basePath, 'invites', currentActiveInvite.id), {
+                    status: status,
+                    email: email,
+                    attendingVVHS: vvhAttending,
+                    attendingMVC: mvcAttending,
+                    timestamp: new Date().toISOString()
+                });
+                
+                const successMsg = document.getElementById('rsvp-success-message');
+                if (status === 'attending') {
+                    successMsg.innerText = "Your RSVP has been saved successfully. We look forward to seeing you!";
+                } else {
+                    successMsg.innerText = "Your RSVP has been saved successfully. We will miss you!";
+                }
+
+                document.getElementById('rsvp-form-state').classList.add('hidden-el');
+                document.getElementById('rsvp-success-state').classList.remove('hidden-el');
+            } catch (error) {
+                console.error("Error updating RSVP:", error);
+                alert("Failed to submit RSVP. Please try again.");
+            }
+        };
+
+        // ADMIN LOGIC
+        window.loginAdmin = async () => {
+            const email = document.getElementById('admin-email').value;
+            const pass = document.getElementById('admin-pass').value;
+            const err = document.getElementById('admin-login-err');
+            try {
+                await signInWithEmailAndPassword(auth, email, pass);
+                err.classList.add('hidden');
+            } catch (error) { err.innerText = "Invalid credentials."; err.classList.remove('hidden'); }
+        };
+
+        const googleProvider = new GoogleAuthProvider();
+        window.loginWithGoogle = async () => {
+            const err = document.getElementById('admin-login-err');
+            try {
+                await signInWithPopup(auth, googleProvider);
+                err.classList.add('hidden');
+            } catch (error) { err.innerText = "Google Sign-In failed."; err.classList.remove('hidden'); }
+        };
+
+        window.logoutAdmin = async () => {
+            await signOut(auth);
+            await signInAnonymously(auth);
+        };
+
+        window.closeAdminLogin = () => { document.getElementById('admin-login-modal').classList.add('hidden-el'); };
+
+        window.generateRandomCode = () => {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; 
+            let result = '';
+            for (let i = 0; i < 6; i++) result += chars.charAt(Math.floor(Math.random() * chars.length));
+            document.getElementById('invite-code').value = result;
+        };
+
+        window.createInvite = async () => {
+            const name = document.getElementById('invite-name').value.trim();
+            const code = document.getElementById('invite-code').value.trim().toUpperCase();
+            const invitedVVHS = document.getElementById('invite-vvh-elig').checked;
+            const invitedMVC = document.getElementById('invite-mvc-elig').checked;
+            const msg = document.getElementById('invite-msg');
+
+            if (!name || !code) { alert("Name and Code required."); return; }
+
+            try {
+                await addDoc(collection(db, basePath, 'invites'), {
+                    name: name,
+                    code: code,
+                    status: 'pending',
+                    attendingVVHS: false,
+                    attendingMVC: false,
+                    invitedVVHS: invitedVVHS,
+                    invitedMVC: invitedMVC
+                });
+                document.getElementById('invite-name').value = '';
+                document.getElementById('invite-code').value = '';
+                document.getElementById('invite-vvh-elig').checked = false;
+                document.getElementById('invite-mvc-elig').checked = false;
+                
+                msg.classList.remove('hidden');
+                setTimeout(() => msg.classList.add('hidden'), 3000);
+            } catch (error) { console.error("Add invite failed:", error); }
+        };
+
+        window.addPhoto = async () => {
+            const urlInput = document.getElementById('admin-photo-url');
+            const url = urlInput.value.trim();
+            const msg = document.getElementById('photo-msg');
+            if (!url) return;
+
+            try {
+                await addDoc(collection(db, basePath, 'photos'), {
+                    url: url,
+                    addedAt: new Date().toISOString()
+                });
+                urlInput.value = '';
+                msg.classList.remove('hidden');
+                setTimeout(() => msg.classList.add('hidden'), 3000);
+            } catch (error) { console.error("Add photo failed:", error); }
+        };
+
+        function updateAdminDashboard() {
+            if (!auth.currentUser || auth.currentUser.isAnonymous) return;
+
+            const vvhMax = 7;
+            const mvcMax = 12;
+            
+            let vvhUsed = 0;
+            let mvcUsed = 0;
+            let vvhPending = 0;
+            let mvcPending = 0;
+
+            const guestListDiv = document.getElementById('admin-guest-list');
+            if(!guestListDiv) return;
+            guestListDiv.innerHTML = '';
+            
+            document.getElementById('total-guests-count').innerText = `${allInvites.length} Guest${allInvites.length === 1 ? '' : 's'}`;
+
+            allInvites.forEach(invite => {
+                // Tracking Status Logic
+                if (invite.status === 'attending') {
+                    if (invite.attendingVVHS) vvhUsed++;
+                    if (invite.attendingMVC) mvcUsed++;
+                } else if (invite.status === 'pending' || !invite.status) {
+                    if (invite.invitedVVHS !== false) vvhPending++;
+                    if (invite.invitedMVC !== false) mvcPending++;
+                }
+
+                // Create Clickable List Item
+                const statusColor = invite.status === 'attending' ? 'bg-emerald-100 text-emerald-700' : invite.status === 'declined' ? 'bg-red-100 text-red-700' : 'bg-slate-100 text-slate-500';
+                
+                const guestItem = document.createElement('div');
+                guestItem.className = "flex items-center justify-between p-5 hover:bg-slate-50 cursor-pointer transition-colors";
+                guestItem.onclick = () => openGuestModal(invite.id);
+                guestItem.innerHTML = `
+                    <div class="flex items-center">
+                        <div>
+                            <p class="font-bold text-slate-800 text-sm md:text-base">${invite.name}</p>
+                            <p class="text-[10px] font-mono text-slate-400 mt-1 uppercase tracking-widest">Code: ${invite.code}</p>
+                        </div>
+                        <span class="px-2 py-1 rounded text-[10px] font-black uppercase tracking-widest ml-4 hidden sm:block ${statusColor}">
+                            ${invite.status || 'Pending'}
+                        </span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-slate-400">
+                        <span class="px-2 py-1 rounded text-[10px] font-black uppercase tracking-widest sm:hidden ${statusColor}">
+                            ${invite.status || 'Pending'}
+                        </span>
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
+                `;
+                guestListDiv.appendChild(guestItem);
+            });
+
+            // Update Progress Circles & Pending Text
+            updateCircle('vvhs', vvhUsed, vvhMax);
+            document.getElementById('vvhs-pending').innerText = `Pending Invites: ${vvhPending}`;
+            
+            updateCircle('mvc', mvcUsed, mvcMax);
+            document.getElementById('mvc-pending').innerText = `Pending Invites: ${mvcPending}`;
+        }
+
+        function updateCircle(idPrefix, used, max) {
+            const countEl = document.getElementById(`${idPrefix}-count`);
+            const circle = document.getElementById(`${idPrefix}-ring`);
+            if (countEl && circle) {
+                countEl.innerText = used;
+                const circumference = 251.2;
+                const percent = Math.min((used / max) * 100, 100);
+                const offset = circumference - (percent / 100) * circumference;
+                circle.style.strokeDashoffset = offset;
+            }
         }
     </script>
 </body>
