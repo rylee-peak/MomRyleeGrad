@@ -119,9 +119,10 @@
                                         <p class="text-sm text-slate-400 font-medium uppercase tracking-widest">Moreno Valley, CA</p>
                                     </div>
                                 </div>
-                                <div class="relative w-full overflow-hidden rounded-[2.5rem] shadow-sm border border-slate-100 bg-black mt-6 aspect-video">
-                                    <iframe src="https://go.rpeak.org/vvhs" class="absolute top-0 left-0 w-full h-full border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
+                                <button onclick="openLivestreamModal('https://go.rpeak.org/vvhs', 'Valley View High School Graduation')" class="flex items-center justify-center w-full p-6 bg-white rounded-[2.5rem] shadow-sm border border-slate-100 hover:border-mvc-teal transition-all group mt-6 cursor-pointer">
+                                    <svg class="w-8 h-8 mr-4 text-red-600 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M21.582 6.186a2.665 2.665 0 0 0-1.884-1.884C18.04 3.84 12 3.84 12 3.84s-6.04 0-7.698.462a2.665 2.665 0 0 0-1.884 1.884C1.956 7.844 1.956 12 1.956 12s0 4.156.462 5.814a2.665 2.665 0 0 0 1.884 1.884C6.04 20.16 12 20.16 12 20.16s6.04 0 7.698-.462a2.665 2.665 0 0 0 1.884-1.884C22.044 16.156 22.044 12 22.044 12s0-4.156-.462-5.814zM9.96 15.528V8.472L16.08 12l-6.12 3.528z"/></svg>
+                                    <div><p class="font-black text-mvc-teal uppercase tracking-widest text-xs">Watch Livestream</p></div>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -150,9 +151,10 @@
                                         <p class="text-sm text-slate-400 font-medium uppercase tracking-widest">Soccer Fields at MVC</p>
                                     </div>
                                 </div>
-                                <div class="relative w-full overflow-hidden rounded-[2.5rem] shadow-sm border border-mvc-teal/10 bg-black mt-6 aspect-video">
-                                    <iframe src="https://go.rpeak.org/mvc" class="absolute top-0 left-0 w-full h-full border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
+                                <button onclick="openLivestreamModal('https://go.rpeak.org/mvc', 'Moreno Valley College Graduation')" class="flex items-center justify-center w-full p-6 bg-white rounded-[2.5rem] shadow-sm border border-mvc-teal/10 hover:border-mvc-teal transition-all group mt-6 cursor-pointer">
+                                    <svg class="w-8 h-8 mr-4 text-red-600 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M21.582 6.186a2.665 2.665 0 0 0-1.884-1.884C18.04 3.84 12 3.84 12 3.84s-6.04 0-7.698.462a2.665 2.665 0 0 0-1.884 1.884C1.956 7.844 1.956 12 1.956 12s0 4.156.462 5.814a2.665 2.665 0 0 0 1.884 1.884C6.04 20.16 12 20.16 12 20.16s6.04 0 7.698-.462a2.665 2.665 0 0 0 1.884-1.884C22.044 16.156 22.044 12 22.044 12s0-4.156-.462-5.814zM9.96 15.528V8.472L16.08 12l-6.12 3.528z"/></svg>
+                                    <div><p class="font-black text-mvc-teal uppercase tracking-widest text-xs">Watch Livestream</p></div>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -256,6 +258,26 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <!-- LIVESTREAM MODAL -->
+    <div id="livestream-modal" class="hidden-el fixed inset-0 bg-slate-900/95 backdrop-blur-md z-[80] flex flex-col items-center justify-center p-4 sm:p-8">
+        <div class="w-full max-w-5xl relative flex flex-col">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="livestream-title" class="text-white font-bold text-lg sm:text-2xl tracking-wide">Livestream</h3>
+                <button onclick="closeLivestreamModal()" class="text-slate-400 hover:text-white transition-colors bg-white/10 hover:bg-white/20 p-2 sm:p-3 rounded-full cursor-pointer">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="w-full overflow-hidden rounded-2xl md:rounded-3xl shadow-2xl border border-white/20 bg-black aspect-video relative">
+                <iframe id="livestream-iframe" src="" class="absolute top-0 left-0 w-full h-full border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="mt-4 text-center">
+                <a id="livestream-external-link" href="#" target="_blank" class="text-mvc-gold hover:text-white text-xs sm:text-sm font-bold tracking-widest uppercase transition-colors bg-white/10 px-6 py-2 rounded-full inline-block">
+                    Having trouble? Open directly in new tab ↗
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- ADMIN LOGIN MODAL -->
@@ -525,6 +547,29 @@
                 toast.classList.remove('opacity-100', 'translate-y-0');
                 toast.classList.add('opacity-0', '-translate-y-4');
             }, 3000);
+        };
+
+        // LIVESTREAM MODAL LOGIC
+        window.openLivestreamModal = (url, title) => {
+            // Smart YouTube Converter: Automatically turns standard links into embed links!
+            let embedUrl = url;
+            if (url.includes('youtube.com/watch?v=')) {
+                embedUrl = url.replace('youtube.com/watch?v=', 'youtube.com/embed/');
+                embedUrl = embedUrl.split('&')[0]; // Remove extra parameters like timestamps
+            } else if (url.includes('youtu.be/')) {
+                embedUrl = url.replace('youtu.be/', 'youtube.com/embed/');
+                embedUrl = embedUrl.split('?')[0];
+            }
+
+            document.getElementById('livestream-title').innerText = title;
+            document.getElementById('livestream-iframe').src = embedUrl;
+            document.getElementById('livestream-external-link').href = url; // Adds the fallback link
+            document.getElementById('livestream-modal').classList.remove('hidden-el');
+        };
+
+        window.closeLivestreamModal = () => {
+            document.getElementById('livestream-modal').classList.add('hidden-el');
+            document.getElementById('livestream-iframe').src = ''; // Stops playback and clears iframe
         };
 
     </script>
